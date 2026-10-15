@@ -1,6 +1,21 @@
 {
-  "slug": "tweet-recovery-machine-v2",
-  "url": "https://tweet-recovery-machine-cl-6mca.arcada.app/",
-  "title": "Tweet Recovery Machine (clone)",
-  "desc": "نسخة ثانية من أداة استخراج التغريدات المحذوفة."
+  "name": "tweet-recovery-machine-v2",
+  "title": "Tweet Recovery Machine — استخراج التغريدات المحذوفة (v2)",
+  "category": "أدوات X/Twitter",
+  "description": "الإصدار الثاني من أداة استعادة التغريدات المحذوفة.",
+  "liveUrl": "https://tweet-recovery-machine-cl-6mca.arcada.app/",
+  "aliases": [
+    "https://tweet-recovery-machine-cl-6mca.arcada.app"
+  ],
+  "sourceLinks": [],
+  "originalTitle": "Tweet Recovery Machine - استعادة التغريدات المحذوفة",
+  "originalDescription": "",
+  "type": "static-website",
+  "archivedAt": "2026-10-15",
+  "readyForHosting": true,
+  "files": [
+    "favicon.svg",
+    "assets/index-DuQhSHss.js",
+    "assets/index-BLuBJDtE.css"
+  ]
 }
