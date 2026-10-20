@@ -23,7 +23,8 @@ const __origin = (req) => {
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 
-export default async function handler(req, res) {
+// legacy duplicate handler (unreachable) — removed by AbuNawaf hardening
+async function __legacyHandler(req, res) {
   __ABUNAWAF_HARDENED__: if (!__rate(req, res)) return;
   res.setHeader('Access-Control-Allow-Origin', __origin(req)); res.setHeader('Vary', 'Origin');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
