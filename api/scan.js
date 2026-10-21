@@ -23,19 +23,7 @@ const __origin = (req) => {
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 
-// legacy duplicate handler (unreachable) — removed by AbuNawaf hardening
-async function __legacyHandler(req, res) {
-  __ABUNAWAF_HARDENED__: if (!__rate(req, res)) return;
-  res.setHeader('Access-Control-Allow-Origin', __origin(req)); res.setHeader('Vary', 'Origin');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') return res.status(200).end();
-
-  const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
-  const { username, mode = 'full_scan', limit = 100 } = body;
-  const cleanUser = (username || '').replace('@', '').trim();
-  if (!cleanUser) return res.status(400).json({ error: 'Username required' });
-
+async function searchWayback(username, domain, limit) {
   const tweets = [];
   try {
     const r = await fetch(`https://web.archive.org/cdx/search/cdx?url=${domain}/${username}/status/*&output=json&limit=${limit}&fl=timestamp,original,statuscode&collapse=urlkey&statuscode=200`, {
@@ -122,7 +110,8 @@ async function searchGoogleCache(username) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', __origin(req)); res.setHeader('Vary', 'Origin');
+  if (!__rate(req, res)) return;
+  res.setHeader('Access-Control-Allow-Origin', __origin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
